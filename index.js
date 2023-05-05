@@ -8,12 +8,15 @@ for (var i = 0; i < numberOfDrumButtons; i++) {
 
        makeSound(buttonHTML);
 
+       buttonAnimation(buttonHTML)
+
     });
 }
 
 // Detecting Keyboard Press
 document,addEventListener("keypress", function (event) {
     makeSound(event.key);
+    buttonAnimation(event.key);
 });
 
 function makeSound(key) {
@@ -72,3 +75,14 @@ function makeSound(key) {
 //   if (sounds.hasOwnProperty(this.innerText))
 //     (new Audio(sounds[this.innerText])).play();
 // }
+
+// animating the buttons
+function buttonAnimation(currentKey) {
+    var activeButton = document.querySelector("." + currentKey);
+
+    activeButton.classList.add("pressed");
+
+    setTimeout(function() {
+        activeButton.classList.remove("pressed");
+    }, 100);
+}
